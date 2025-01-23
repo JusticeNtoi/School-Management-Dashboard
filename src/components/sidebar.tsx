@@ -116,9 +116,9 @@ const menuItems = [
   },
 ];
 
-const Menu = () => {
+const Sidebar = () => {
   return (
-    <div className="mt-4 text-sm">
+    <div className="mt-2 mb-16 text-sm" >
       { menuItems.map((i) => (
         <div className="flex flex-col gap-2" key={ i.title }>
           <span
@@ -142,4 +142,4 @@ const Menu = () => {
   )
 }
 
-export default Menu
+export default Sidebar
