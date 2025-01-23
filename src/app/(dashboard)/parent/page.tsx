@@ -1,7 +1,7 @@
-const Page = () => {
+const ParentPage = () => {
     return (
         <div>Parent Page</div>
     )
 }
 
-export default Page
+export default ParentPage
