@@ -15,7 +15,7 @@ const Pagination = () => {
         Next
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Pagination
+export default Pagination;
