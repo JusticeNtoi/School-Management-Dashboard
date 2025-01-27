@@ -57,12 +57,12 @@
   border-color: var(--color-gray-light) !important;
 }
 
-/* .rbc-time-header {
+.rbc-allday-cell {
   display: none !important;
-} */
+}
 
 .rbc-time-content {
-  border: 1px solid var(--color-gray-light) !important;
+  border: none !important;
 }
 
 .rbc-time-gutter.rbc-time-column {
@@ -120,5 +120,5 @@
 
 .rbc-event-label {
   color: gray !important;
-  /* margin-bottom: 2px; */
+  margin-bottom: 2px;
 }
