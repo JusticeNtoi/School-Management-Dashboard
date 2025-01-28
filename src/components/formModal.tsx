@@ -1,8 +1,62 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
-import TeacherForm from "./forms/teacherForm";
+
+const TeacherForm = dynamic(() => import("./forms/teacherForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const StudentForm = dynamic(() => import("./forms/studentForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const ParentForm = dynamic(() => import("./forms/parentForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const SubjectForm = dynamic(() => import("./forms/subjectForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const ClassForm = dynamic(() => import("./forms/classForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const LessonForm = dynamic(() => import("./forms/lessonForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const ExamForm = dynamic(() => import("./forms/examForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const AssignmentForm = dynamic(() => import("./forms/assignmentForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const ResultForm = dynamic(() => import("./forms/resultForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const AttendanceForm = dynamic(() => import("./forms/attendanceForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const EventForm = dynamic(() => import("./forms/eventForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+const AnnouncementForm = dynamic(() => import("./forms/announcementForm"), {
+  loading: () => <h1>Loading...</h1>,
+});
+
+const forms: {
+  [key: string]: (type: "create" | "update", data?: any) => JSX.Element;
+} = {
+  teachers: (type, data) => <TeacherForm type={type} data={data} />,
+  students: (type, data) => <StudentForm type={type} data={data} />,
+  parents: (type, data) => <ParentForm type={type} data={data} />,
+  subjects: (type, data) => <SubjectForm type={type} data={data} />,
+  classes: (type, data) => <ClassForm type={type} data={data} />,
+  lessons: (type, data) => <LessonForm type={type} data={data} />,
+  exams: (type, data) => <ExamForm type={type} data={data} />,
+  assignments: (type, data) => <AssignmentForm type={type} data={data} />,
+  results: (type, data) => <ResultForm type={type} data={data} />,
+  attendances: (type, data) => <AttendanceForm type={type} data={data} />,
+  events: (type, data) => <EventForm type={type} data={data} />,
+  announcements: (type, data) => <AnnouncementForm type={type} data={data} />,
+};
 
 const FormModal = ({
   table,
@@ -48,8 +102,10 @@ const FormModal = ({
           Delete
         </button>
       </form>
+    ) : type === "create" || type === "update" ? (
+      forms[table](type, data)
     ) : (
-      <TeacherForm type="create" />
+      "Form not found!"
     );
   };
 

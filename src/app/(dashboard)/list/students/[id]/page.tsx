@@ -1,5 +1,6 @@
 import Announcements from "@/components/announcements";
 import BigCalendar from "@/components/bigCalendar";
+import FormModal from "@/components/formModal";
 import Performance from "@/components/performance";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +24,27 @@ const SingleStudentPage = () => {
               />
             </div>
             <div className="w-2/3 flex flex-col justify-between gap-4">
-              <h1 className="text-xl font-semibold">Lida Zimmerman</h1>
+              <div className="flex items-center gap-4">
+                <h1 className="text-xl font-semibold">Lida Zimmerman</h1>
+                <FormModal
+                  table="teachers"
+                  type="update"
+                  data={{
+                    id: 1,
+                    username: "Zimmerman",
+                    email: "john@doe.com",
+                    password: "12345678",
+                    firstName: "Lida",
+                    lastName: "Zimmerman",
+                    phone: "1234567890",
+                    address: "123 Main St, Anytown, USA",
+                    bloodType: "A-",
+                    birthday: "2000-12-01",
+                    sex: "female",
+                    img: "https://images.pexels.com/photos/2888150/pexels-photo-2888150.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                  }}
+                />
+              </div>
               <p className="text-sm text-gray-600">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               </p>

@@ -30,7 +30,7 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>;
 
-const TeacherForm = ({
+const LessonForm = ({
   type,
   data,
 }: {
@@ -51,7 +51,7 @@ const TeacherForm = ({
 
   return (
     <form className="flex flex-col gap-8" onSubmit={onSubmit}>
-      <h1 className="text-lg font-semibold">Create a new teacher</h1>
+      <h1 className="text-lg font-semibold">Create a new lesson</h1>
       <span className="text-xs text-gray-500 font-medium">
         Authentication Information
       </span>
@@ -168,4 +168,4 @@ const TeacherForm = ({
   );
 };
 
-export default TeacherForm;
+export default LessonForm;
