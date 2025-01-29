@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --color-sky-Deep: #83a1f5;
+  --color-Gray: #cccccc;
   --color-sky: #c3ebfa;
   --color-sky-light: #edf9fd;
   --color-purple: #cfceff;
@@ -13,6 +15,31 @@
   --color-off-white: #f7f8fa;
   --color-gray-light: #eee;
 }
+
+/* ========================== SIDEBAR SCROLL =============================== */
+
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 9px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background-color: var(--color-purple-light);
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-Gray);
+  border-radius: 8px;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-sky-Deep);
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* ========================== REACT CALENDAR =============================== */
 
 .react-calendar {
   width: 100% !important;
@@ -28,6 +55,8 @@
   background-color: var(--color-sky) !important;
   color: black !important;
 }
+
+/* ========================== REACT BIG CALENDAR =============================== */
 
 .rbc-btn-group:first-child {
   display: none !important;

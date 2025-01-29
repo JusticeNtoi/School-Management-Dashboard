@@ -14,7 +14,7 @@ export default function DashboardLayout({
         <div className="p-4 sticky top-0 bg-white z-10">
           <Logo />
         </div>
-        <div className="pl-4 pr-2 flex-1 overflow-y-auto scroll-smooth">
+        <div className="pl-4 pr-2 flex-1 overflow-y-auto scroll-smooth sidebar-scrollbar">
           <Sidebar />
         </div>
       </div>
@@ -27,12 +27,6 @@ export default function DashboardLayout({
         {/* BODY */}
         {children}
       </div>
-      {/* <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] bg-colorOffWhite ">
-        <Navbar />
-        <div className="max-h-[calc(100vh-74px)] overflow-y-auto scroll-smooth">
-          {children}
-        </div>
-      </div> */}
     </div>
   );
 }
