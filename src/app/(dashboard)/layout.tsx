@@ -21,7 +21,7 @@ export default function DashboardLayout({
       {/* RIGHT */}
       <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] bg-colorOffWhite flex flex-col overflow-y-auto scroll-smooth">
         {/* TOP */}
-        <div className="sticky top-0 bg-colorOffWhite z-10">
+        <div className="sticky top-0 z-10">
           <Navbar />
         </div>
         {/* BODY */}
