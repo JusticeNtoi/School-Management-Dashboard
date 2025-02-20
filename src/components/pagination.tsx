@@ -1,15 +1,31 @@
-const Pagination = () => {
+"use client";
+import { ITEM_PER_PAGE } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+
+const Pagination = ({ page, count }: { page: number; count: number }) => {
+  const router = useRouter();
   return (
     <div className="flex p-4 items-center justify-between text-gray-500">
       <button className="py-2 px-4 rounded-md bg-slate-200 text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
         Prev
       </button>
       <div className="flex items-center gap-2 text-base">
-        <button className="px-3 py-1 rounded-sm bg-colorSky">1</button>
-        <button className="px-3 py-1 rounded-sm">2</button>
-        <button className="px-3 py-1 rounded-sm">3</button>
-        <button className="px-3 py-1 rounded-sm">...</button>
-        <button className="px-3 py-1 rounded-sm">10</button>
+        {Array.from(
+          { length: Math.ceil(count / ITEM_PER_PAGE) },
+          (_, index) => {
+            const pageIndex = index + 1;
+            return (
+              <button
+                key={pageIndex}
+                className={`px-3 py-1 rounded-sm ${
+                  page === pageIndex ? "bg-colorSky" : ""
+                }`}
+              >
+                {pageIndex}
+              </button>
+            );
+          }
+        )}
       </div>
       <button className="py-2 px-4 rounded-md bg-slate-200 text-xs font-semibold disabled:opacity-50 disabled:cursor-not-allowed">
         Next
