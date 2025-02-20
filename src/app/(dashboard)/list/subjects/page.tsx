@@ -3,14 +3,12 @@ import Pagination from "@/components/pagination";
 import Table from "@/components/table";
 import TableSearch from "@/components/tableSearch";
 import { role, subjectsData } from "@/lib/data";
+import { prisma } from "@/lib/prisma";
+import { ITEM_PER_PAGE } from "@/lib/utils";
+import { Prisma, Subject, Teacher } from "@prisma/client";
 import Image from "next/image";
-import Link from "next/link";
 
-type Subject = {
-  id: number;
-  name: string;
-  teachers: string[];
-};
+type SubjectList = Subject & { teachers: Teacher[] };
 
 const columns = [
   {
@@ -28,28 +26,67 @@ const columns = [
   },
 ];
 
-const SubjectsListPage = () => {
-  const renderRow = (item: Subject) => (
-    <tr
-      key={item.id}
-      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-colorPurpleLight"
-    >
-      <td className="flex items-center gap-4 p-4">
-        <h3 className="font-semibold">{item.name}</h3>
-      </td>
-      <td className="hidden md:table-cell">{item.teachers.join(", ")}</td>
-      <td>
-        <div className="flex items-center gap-2">
-          {role === "admin" && (
-            <>
-              <FormModal table="subjects" type="update" data={item} />
-              <FormModal table="subjects" type="delete" id={item.id} />
-            </>
-          )}
-        </div>
-      </td>
-    </tr>
-  );
+const renderRow = (item: SubjectList) => (
+  <tr
+    key={item.id}
+    className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-colorPurpleLight"
+  >
+    <td className="flex items-center gap-4 p-4">
+      <h3 className="font-semibold">{item.name}</h3>
+    </td>
+    <td className="hidden md:table-cell">
+      {item.teachers.map((teacher) => teacher.name).join(", ")}
+    </td>
+    <td>
+      <div className="flex items-center gap-2">
+        {role === "admin" && (
+          <>
+            <FormModal table="subjects" type="update" data={item} />
+            <FormModal table="subjects" type="delete" id={item.id} />
+          </>
+        )}
+      </div>
+    </td>
+  </tr>
+);
+
+const SubjectsListPage = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) => {
+  const { page, ...queryParams } = searchParams;
+
+  const pageNumber = page ? parseInt(page) : 1;
+
+  const query: Prisma.SubjectWhereInput = {};
+
+  // URL PARAMS CONDITIONS
+  if (queryParams) {
+    for (const [key, value] of Object.entries(queryParams)) {
+      if (value !== undefined) {
+        switch (key) {
+          case "search":
+            query.name = { contains: value, mode: "insensitive" };
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+  const [subjectsData, count] = await prisma.$transaction([
+    prisma.subject.findMany({
+      where: query,
+      include: {
+        teachers: true,
+      },
+      take: ITEM_PER_PAGE,
+      skip: ITEM_PER_PAGE * (pageNumber - 1),
+    }),
+    prisma.subject.count({ where: query }),
+  ]);
 
   return (
     <div className="bg-white rounded-xl flex-1 p-4 m-4 mt-0">
@@ -72,7 +109,7 @@ const SubjectsListPage = () => {
       {/* LIST */}
       <Table columns={columns} renderRow={renderRow} data={subjectsData} />
       {/* PAGINATION */}
-      <Pagination />
+      <Pagination page={pageNumber} count={count} />
     </div>
   );
 };
