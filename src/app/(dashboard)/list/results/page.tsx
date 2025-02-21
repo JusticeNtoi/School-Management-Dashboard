@@ -110,7 +110,7 @@ const ResultsListPage = async ({
                 exam: { title: { contains: value, mode: "insensitive" } },
               },
               {
-                Student: { name: { contains: value, mode: "insensitive" } },
+                student: { name: { contains: value, mode: "insensitive" } },
               },
             ];
             break;
@@ -125,7 +125,7 @@ const ResultsListPage = async ({
     prisma.result.findMany({
       where: query,
       include: {
-        Student: { select: { name: true, surname: true } },
+        student: { select: { name: true, surname: true } },
         exam: {
           include: {
             lesson: {
@@ -163,8 +163,8 @@ const ResultsListPage = async ({
     return {
       id: item.id,
       title: assessment.title,
-      studentName: item.Student.name,
-      studentSurname: item.Student.surname,
+      studentName: item.student.name,
+      studentSurname: item.student.surname,
       teacherName: assessment.lesson.teacher.name,
       teacherSurname: assessment.lesson.teacher.surname,
       score: item.score,
