@@ -2,7 +2,7 @@ import FormModal from "@/components/formModal";
 import Pagination from "@/components/pagination";
 import Table from "@/components/table";
 import TableSearch from "@/components/tableSearch";
-import { classesData, role } from "@/lib/data";
+import { role } from "@/lib/data";
 import { prisma } from "@/lib/prisma";
 import { ITEM_PER_PAGE } from "@/lib/utils";
 import { Class, Prisma, Teacher } from "@prisma/client";
@@ -71,9 +71,9 @@ const ClassesListPage = async ({
 
   const pageNumber = page ? parseInt(page) : 1;
 
+  // URL PARAMS CONDITIONS
   const query: Prisma.ClassWhereInput = {};
 
-  // URL PARAMS CONDITIONS
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {

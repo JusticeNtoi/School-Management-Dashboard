@@ -98,9 +98,9 @@ const TeachersListPage = async ({
 
   const pageNumber = page ? parseInt(page) : 1;
 
+  // URL PARAMS CONDITIONS
   const query: Prisma.TeacherWhereInput = {};
 
-  // URL PARAMS CONDITIONS
   if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {

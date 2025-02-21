@@ -81,7 +81,7 @@ model Class {
 
   lessons       Lesson[]
   supervisorId  String?
-  supervisor    Teacher?        @relation(fields: [supervisorId], references: [id])
+  supervisor    Teacher?       @relation(fields: [supervisorId], references: [id])
   students      Student[]
   gradeId       Int
   grade         Grade          @relation(fields: [gradeId], references: [id])
@@ -145,7 +145,7 @@ model Result {
   assignmentId Int?
   assignment   Assignment? @relation(fields: [assignmentId], references: [id])
   studentId    String
-  Student      Student     @relation(fields: [studentId], references: [id])
+  student      Student     @relation(fields: [studentId], references: [id])
 }
 
 model Attendance {
