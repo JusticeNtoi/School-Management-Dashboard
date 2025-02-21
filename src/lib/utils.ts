@@ -11,8 +11,7 @@ export const formatDateToLocal = (
     year: "numeric",
   };
   const formatter = new Intl.DateTimeFormat(locale, options);
-  // return formatter.format(date);
-  return date.toLocaleDateString(locale, options);
+  return formatter.format(date);
 };
 
 export const formatTimeToLocal = (
