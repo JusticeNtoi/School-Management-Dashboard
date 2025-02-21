@@ -2,7 +2,7 @@ export const ITEM_PER_PAGE = 10;
 
 export const formatDateToLocal = (
   dateStr: Date | string,
-  locale: string = "en-US"
+  locale: string = "en-ZA"
 ) => {
   const date = new Date(dateStr);
   const options: Intl.DateTimeFormatOptions = {
@@ -17,7 +17,7 @@ export const formatDateToLocal = (
 
 export const formatTimeToLocal = (
   dateStr: Date | string,
-  locale: string = "en-US"
+  locale: string = "en-ZA"
 ) => {
   const date = new Date(dateStr);
   const options: Intl.DateTimeFormatOptions = {
