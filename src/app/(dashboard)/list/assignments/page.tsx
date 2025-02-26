@@ -73,8 +73,8 @@ const AssignmentsListPage = async ({
         <div className="flex items-center gap-2">
           {(role === "admin" || role === "teacher") && (
             <>
-              <FormModal table="assignments" type="update" data={item} />
-              <FormModal table="assignments" type="delete" id={item.id} />
+              <FormModal table="assignment" type="update" data={item} />
+              <FormModal table="assignment" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -187,7 +187,7 @@ const AssignmentsListPage = async ({
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
             {(role === "admin" || role === "teacher") && (
-              <FormModal table="assignments" type="create" />
+              <FormModal table="assignment" type="create" />
             )}
           </div>
         </div>

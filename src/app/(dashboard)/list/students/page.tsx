@@ -84,7 +84,7 @@ const StudentsListPage = async ({
             </button>
           </Link>
           {role === "admin" && (
-            <FormModal table="students" type="delete" id={item.id} />
+            <FormModal table="student" type="delete" id={item.id} />
           )}
         </div>
       </td>
@@ -145,7 +145,7 @@ const StudentsListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-colorYellow">
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
-            {role === "admin" && <FormModal table="students" type="create" />}
+            {role === "admin" && <FormModal table="student" type="create" />}
           </div>
         </div>
       </div>

@@ -57,8 +57,8 @@ const AnnouncementsListPage = async ({
         <div className="flex items-center gap-2">
           {role === "admin" && (
             <>
-              <FormModal table="announcements" type="update" data={item} />
-              <FormModal table="announcements" type="delete" id={item.id} />
+              <FormModal table="announcement" type="update" data={item} />
+              <FormModal table="announcement" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -133,7 +133,7 @@ const AnnouncementsListPage = async ({
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
             {role === "admin" && (
-              <FormModal table="announcements" type="create" />
+              <FormModal table="announcement" type="create" />
             )}
           </div>
         </div>

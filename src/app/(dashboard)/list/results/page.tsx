@@ -89,8 +89,8 @@ const ResultsListPage = async ({
         <div className="flex items-center gap-2">
           {(role === "admin" || role === "teacher") && (
             <>
-              <FormModal table="results" type="update" data={item} />
-              <FormModal table="results" type="delete" id={item.id} />
+              <FormModal table="result" type="update" data={item} />
+              <FormModal table="result" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -221,7 +221,7 @@ const ResultsListPage = async ({
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
             {(role === "admin" || role === "teacher") && (
-              <FormModal table="results" type="create" />
+              <FormModal table="result" type="create" />
             )}
           </div>
         </div>

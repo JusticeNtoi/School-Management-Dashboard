@@ -27,7 +27,7 @@ const SingleTeacherPage = () => {
               <div className="flex items-center gap-4">
                 <h1 className="text-xl font-semibold">Edgar Goodwin</h1>
                 <FormModal
-                  table="teachers"
+                  table="teacher"
                   type="update"
                   data={{
                     id: 1,

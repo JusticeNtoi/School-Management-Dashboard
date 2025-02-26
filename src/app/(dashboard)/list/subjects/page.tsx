@@ -44,8 +44,8 @@ const SubjectsListPage = async ({
       <td>
         <div className="flex items-center gap-2">
           <>
-            <FormModal table="subjects" type="update" data={item} />
-            <FormModal table="subjects" type="delete" id={item.id} />
+            <FormModal table="subject" type="update" data={item} />
+            <FormModal table="subject" type="delete" id={item.id} />
           </>
         </div>
       </td>
@@ -99,7 +99,7 @@ const SubjectsListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-colorYellow">
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
-            <FormModal table="subjects" type="create" />
+            <FormModal table="subject" type="create" />
           </div>
         </div>
       </div>
