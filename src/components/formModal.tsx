@@ -8,7 +8,12 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
 import { FormContainerProps } from "./formContainer";
-import { deleteClass, deleteStudent, deleteTeacher } from "@/lib/actions";
+import {
+  deleteClass,
+  deleteExam,
+  deleteStudent,
+  deleteTeacher,
+} from "@/lib/actions";
 
 const TeacherForm = dynamic(() => import("./forms/teacherForm"), {
   loading: () => <h1>Loading...</h1>,
@@ -158,7 +163,8 @@ const deleteActionMap = {
   class: deleteClass,
   teacher: deleteTeacher,
   student: deleteStudent,
-  exam: deleteSubject,
+  exam: deleteExam,
+
   parent: deleteSubject,
   lesson: deleteSubject,
   assignment: deleteSubject,
@@ -166,7 +172,6 @@ const deleteActionMap = {
   attendance: deleteSubject,
   event: deleteSubject,
   announcement: deleteSubject,
-  // exam: deleteExam,
   // parent: deleteParent,
   // lesson: deleteLesson,
   // assignment: deleteAssignment,
@@ -208,7 +213,6 @@ const FormModal = ({
         router.refresh();
       }
     }, [state, router]);
-    // }, [state, router, type, setOpen]);
 
     return type === "delete" && "id" ? (
       <form action={formAction} className="p-4 pt-8 flex flex-col gap-4">

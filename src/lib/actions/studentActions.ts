@@ -10,7 +10,6 @@ export const createStudent = async (
   currentState: CurrentState,
   data: StudentInputs
 ) => {
-  console.log(data);
   try {
     const classItem = await prisma.class.findUnique({
       where: { id: data.classId },
