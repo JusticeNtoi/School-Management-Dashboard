@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import InputField from "../inputField";
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 
 const schema = z.object({
   username: z
@@ -32,9 +33,11 @@ type Inputs = z.infer<typeof schema>;
 
 const LessonForm = ({
   type,
+  setOpen,
   data,
 }: {
   type: "create" | "update";
+  setOpen: Dispatch<SetStateAction<boolean>>;
   data?: any;
 }) => {
   const {

@@ -73,7 +73,7 @@ const forms: {
   exam: (type, setOpen, data) => (
     <ExamForm type={type} setOpen={setOpen} data={data} />
   ),
-  assignment: (type, data) => (
+  assignment: (type, setOpen, data) => (
     <AssignmentForm type={type} setOpen={setOpen} data={data} />
   ),
   result: (type, setOpen, data) => (
