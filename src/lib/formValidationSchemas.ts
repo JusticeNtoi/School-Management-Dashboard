@@ -253,7 +253,7 @@ export const teacherSchema = z.object({
     .optional()
     .or(z.literal("")),
   phone: z.string().optional(),
-  address: z.string(),
+  address: z.string().min(1, { message: "Address is required!" }),
   img: z.string().optional(),
   bloodType: z.string().min(1, { message: "Blood Type is required!" }),
   birthday: z.coerce.date({ message: "Birthday is required!" }),

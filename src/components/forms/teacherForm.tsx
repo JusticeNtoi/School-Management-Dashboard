@@ -67,6 +67,16 @@ const TeacherForm = ({
         Authentication Information
       </span>
       <div className="flex justify-between flex-wrap gap-4">
+        {data && (
+          <InputField
+            label="Id"
+            name="id"
+            defaultValue={data?.id}
+            register={register}
+            error={errors?.id}
+            hidden
+          />
+        )}
         <InputField
           label="Username"
           name="username"
@@ -94,16 +104,6 @@ const TeacherForm = ({
         Personal Information
       </span>
       <div className="flex justify-between flex-wrap gap-4">
-        {data && (
-          <InputField
-            label="Id"
-            name="id"
-            defaultValue={data?.id}
-            register={register}
-            error={errors?.id}
-            hidden
-          />
-        )}
         <InputField
           label="First Name"
           name="name"
@@ -142,7 +142,7 @@ const TeacherForm = ({
         <InputField
           label="Birthday"
           name="birthday"
-          defaultValue={data?.birthday}
+          defaultValue={data?.birthday.toISOString().split("T")[0]}
           register={register}
           error={errors.birthday}
           type="date"
@@ -155,8 +155,8 @@ const TeacherForm = ({
             {...register("sex")}
             defaultValue={data?.sex}
           >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
           </select>
           {errors.sex?.message && (
             <p className="text-xs text-red-400">
@@ -205,6 +205,9 @@ const TeacherForm = ({
           }}
         </CldUploadWidget>
       </div>
+      {state.error && (
+        <span className="text-red-500">Something went wrong!</span>
+      )}
 
       <button className="bg-blue-400 text-white font-semibold p-2 rounded-md">
         {type === "create" ? "Create" : "Update"}
