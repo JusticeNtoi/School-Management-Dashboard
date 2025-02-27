@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import InputField from "../inputField";
 import { subjectSchema, SubjectInput } from "@/lib/formValidationSchemas";
-import { createSubject } from "@/lib/actions";
+import { createSubject, updateSubject } from "@/lib/actions";
 import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -29,8 +29,7 @@ const SubjectForm = ({
 
   // AFTER REACT 19 IT'LL BE USEACTIONSTATE
   const [state, formAction] = useFormState(
-    createSubject,
-    // type === "create" ? createSubject : updateSubject,
+    type === "create" ? createSubject : updateSubject,
     {
       success: false,
       error: false,
@@ -57,6 +56,16 @@ const SubjectForm = ({
         {type === "create" ? "Create a new subject" : "Update subject"}
       </h1>
       <div className="flex justify-between flex-wrap gap-4">
+        {data && (
+          <InputField
+            label="Id"
+            name="id"
+            defaultValue={data?.id}
+            register={register}
+            error={errors?.id}
+            hidden
+          />
+        )}
         <InputField
           label="Subject name"
           name="name"
