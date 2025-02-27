@@ -1,4 +1,4 @@
-import FormModal from "@/components/formModal";
+import FormContainer from "@/components/formContainer";
 import Pagination from "@/components/pagination";
 import Table from "@/components/table";
 import TableSearch from "@/components/tableSearch";
@@ -57,8 +57,8 @@ const AnnouncementsListPage = async ({
         <div className="flex items-center gap-2">
           {role === "admin" && (
             <>
-              <FormModal table="announcement" type="update" data={item} />
-              <FormModal table="announcement" type="delete" id={item.id} />
+              <FormContainer table="announcement" type="update" data={item} />
+              <FormContainer table="announcement" type="delete" id={item.id} />
             </>
           )}
         </div>
@@ -133,7 +133,7 @@ const AnnouncementsListPage = async ({
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
             {role === "admin" && (
-              <FormModal table="announcement" type="create" />
+              <FormContainer table="announcement" type="create" />
             )}
           </div>
         </div>

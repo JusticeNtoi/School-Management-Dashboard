@@ -1,25 +1,20 @@
 "use server";
 
-import { SubjectInput } from "./formValidationSchemas";
-import { prisma } from "./prisma";
+import { ClassInputs } from "../formValidationSchemas";
+import { prisma } from "../prisma";
 
 type CurrentState = { success: boolean; error: boolean };
 
-export const createSubject = async (
+export const createClass = async (
   currentState: CurrentState,
-  data: SubjectInput
+  data: ClassInputs
 ) => {
   try {
-    await prisma.subject.create({
-      data: {
-        name: data.name,
-        // teachers: {
-        //   connect: data.teachers.map((teacherId) => ({ id: teacherId })),
-        // },
-      },
+    await prisma.class.create({
+      data,
     });
 
-    // revalidatePath("/list/subjects");
+    // revalidatePath("/list/class");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);
@@ -27,24 +22,19 @@ export const createSubject = async (
   }
 };
 
-export const updateSubject = async (
+export const updateClass = async (
   currentState: CurrentState,
-  data: SubjectInput
+  data: ClassInputs
 ) => {
   try {
-    await prisma.subject.update({
+    await prisma.class.update({
       where: {
         id: data.id,
       },
-      data: {
-        name: data.name,
-        // teachers: {
-        //   set: data.teachers.map((teacherId) => ({ id: teacherId })),
-        // },
-      },
+      data,
     });
 
-    // revalidatePath("/list/subjects");
+    // revalidatePath("/list/class");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);
@@ -52,19 +42,19 @@ export const updateSubject = async (
   }
 };
 
-export const deleteSubject = async (
+export const deleteClass = async (
   currentState: CurrentState,
   data: FormData
 ) => {
   const id = data.get("id") as string;
   try {
-    await prisma.subject.delete({
+    await prisma.class.delete({
       where: {
         id: parseInt(id),
       },
     });
 
-    // revalidatePath("/list/subjects");
+    // revalidatePath("/list/class");
     return { success: true, error: false };
   } catch (err) {
     console.log(err);

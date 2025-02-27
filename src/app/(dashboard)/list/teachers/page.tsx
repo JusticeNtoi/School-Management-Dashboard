@@ -1,4 +1,4 @@
-import FormModal from "@/components/formModal";
+import FormContainer from "@/components/formContainer";
 import Pagination from "@/components/pagination";
 import Table from "@/components/table";
 import TableSearch from "@/components/tableSearch";
@@ -94,7 +94,7 @@ const TeachersListPage = async ({
             </button>
           </Link>
           {role === "admin" && (
-            <FormModal table="teacher" type="delete" id={item.id} />
+            <FormContainer table="teacher" type="delete" id={item.id} />
           )}
         </div>
       </td>
@@ -154,7 +154,9 @@ const TeachersListPage = async ({
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-colorYellow">
               <Image src={"/sort.png"} alt={""} width={14} height={14} />
             </button>
-            {role === "admin" && <FormModal table="teacher" type="create" />}
+            {role === "admin" && (
+              <FormContainer table="teacher" type="create" />
+            )}
           </div>
         </div>
       </div>

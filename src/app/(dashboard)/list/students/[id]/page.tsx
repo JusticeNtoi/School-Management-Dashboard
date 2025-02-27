@@ -1,11 +1,14 @@
 import Announcements from "@/components/announcements";
-import BigCalendar from "@/components/bigCalendar";
-import FormModal from "@/components/formModal";
+import BigCalendarContainer from "@/components/bigCalendarContainer";
+import FormContainer from "@/components/formContainer";
 import Performance from "@/components/performance";
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 
-const SingleStudentPage = () => {
+const SingleStudentPage = async () => {
+  const { userId } = await auth();
+
   return (
     <div className="flex flex-1 p-4 gap-4 flex-col xl:flex-row">
       {/* LEFT */}
@@ -26,7 +29,7 @@ const SingleStudentPage = () => {
             <div className="w-2/3 flex flex-col justify-between gap-4">
               <div className="flex items-center gap-4">
                 <h1 className="text-xl font-semibold">Lida Zimmerman</h1>
-                <FormModal
+                <FormContainer
                   table="teacher"
                   type="update"
                   data={{
@@ -131,7 +134,7 @@ const SingleStudentPage = () => {
         {/* BOTTOM */}
         <div className="bg-white rounded-xl p-4 h-[900px]">
           <h1 className="text-lg font-semibold">Student&apos;s Schedule</h1>
-          <BigCalendar />
+          <BigCalendarContainer type={"classId"} id={userId!} />
         </div>
       </div>
       {/* RIGHT */}

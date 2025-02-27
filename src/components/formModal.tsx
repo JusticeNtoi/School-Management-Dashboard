@@ -1,12 +1,14 @@
 "use client";
 
-import { deleteSubject } from "@/lib/actions";
+import { deleteSubject } from "@/lib/actions/subjectActions";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
+import { FormContainerProps } from "./formContainer";
+import { deleteClass, deleteTeacher } from "@/lib/actions";
 
 const TeacherForm = dynamic(() => import("./forms/teacherForm"), {
   loading: () => <h1>Loading...</h1>,
@@ -49,51 +51,112 @@ const forms: {
   [key: string]: (
     type: "create" | "update",
     setOpen: Dispatch<SetStateAction<boolean>>,
-    data?: any
+    data?: any,
+    relatedData?: any
   ) => JSX.Element;
 } = {
-  teacher: (type, setOpen, data) => (
-    <TeacherForm type={type} setOpen={setOpen} data={data} />
+  teacher: (type, setOpen, data, relatedData) => (
+    <TeacherForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  student: (type, setOpen, data) => (
-    <StudentForm type={type} setOpen={setOpen} data={data} />
+  student: (type, setOpen, data, relatedData) => (
+    <StudentForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  parent: (type, setOpen, data) => (
-    <ParentForm type={type} setOpen={setOpen} data={data} />
+  parent: (type, setOpen, data, relatedData) => (
+    <ParentForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  subject: (type, setOpen, data) => (
-    <SubjectForm type={type} setOpen={setOpen} data={data} />
+  subject: (type, setOpen, data, relatedData) => (
+    <SubjectForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  class: (type, setOpen, data) => (
-    <ClassForm type={type} setOpen={setOpen} data={data} />
+  class: (type, setOpen, data, relatedData) => (
+    <ClassForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  lesson: (type, setOpen, data) => (
-    <LessonForm type={type} setOpen={setOpen} data={data} />
+  lesson: (type, setOpen, data, relatedData) => (
+    <LessonForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  exam: (type, setOpen, data) => (
-    <ExamForm type={type} setOpen={setOpen} data={data} />
+  exam: (type, setOpen, data, relatedData) => (
+    <ExamForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  assignment: (type, setOpen, data) => (
-    <AssignmentForm type={type} setOpen={setOpen} data={data} />
+  assignment: (type, setOpen, data, relatedData) => (
+    <AssignmentForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  result: (type, setOpen, data) => (
-    <ResultForm type={type} setOpen={setOpen} data={data} />
+  result: (type, setOpen, data, relatedData) => (
+    <ResultForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  attendance: (type, setOpen, data) => (
-    <AttendanceForm type={type} setOpen={setOpen} data={data} />
+  attendance: (type, setOpen, data, relatedData) => (
+    <AttendanceForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  event: (type, setOpen, data) => (
-    <EventForm type={type} setOpen={setOpen} data={data} />
+  event: (type, setOpen, data, relatedData) => (
+    <EventForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
-  announcement: (type, setOpen, data) => (
-    <AnnouncementForm type={type} setOpen={setOpen} data={data} />
+  announcement: (type, setOpen, data, relatedData) => (
+    <AnnouncementForm
+      type={type}
+      setOpen={setOpen}
+      data={data}
+      relatedData={relatedData}
+    />
   ),
 };
 
 const deleteActionMap = {
   subject: deleteSubject,
-  class: deleteSubject,
-  teacher: deleteSubject,
+  class: deleteClass,
+  teacher: deleteTeacher,
   student: deleteSubject,
   exam: deleteSubject,
   parent: deleteSubject,
@@ -103,8 +166,6 @@ const deleteActionMap = {
   attendance: deleteSubject,
   event: deleteSubject,
   announcement: deleteSubject,
-  // class: deleteClass,
-  // teacher: deleteTeacher,
   // student: deleteStudent,
   // exam: deleteExam,
   // parent: deleteParent,
@@ -121,24 +182,8 @@ const FormModal = ({
   type,
   data,
   id,
-}: {
-  table:
-    | "teacher"
-    | "student"
-    | "parent"
-    | "subject"
-    | "class"
-    | "lesson"
-    | "exam"
-    | "assignment"
-    | "result"
-    | "attendance"
-    | "event"
-    | "announcement";
-  type: "create" | "update" | "delete";
-  data?: any;
-  id?: string | number;
-}) => {
+  relatedData,
+}: FormContainerProps & { relatedData?: any }) => {
   const size = type === "create" ? "w-8 h-8" : "w-7 h-7";
   const bgColor =
     type === "create"
@@ -178,7 +223,7 @@ const FormModal = ({
         </button>
       </form>
     ) : type === "create" || type === "update" ? (
-      forms[table](type, setOpen, data)
+      forms[table](type, setOpen, data, relatedData)
     ) : (
       "Form not found!"
     );
